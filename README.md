@@ -50,6 +50,13 @@ python manage.py runserver
 
 ### Frontend
 
+Create a .env file in the root directory and add the following:
+
+```bash
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+Then, perform the following:
 ``` bash
 cd frontend
 npm install
