@@ -28,6 +28,7 @@ DEBUG = True
 # Allow the API to be accessed from the frontend and local development.
 ALLOWED_HOSTS = [
     "eld-trip-planner-api.duckdns.org",
+    "http://localhost:8000/api",
     "localhost",
     "127.0.0.1",
 ]
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = [
 # Allow cross-origin requests from the frontend development server.
 CSRF_TRUSTED_ORIGINS = [
     "https://eld-trip-planner-api.duckdns.org",
+    "http://localhost:8000",
 ]
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure(), which is set by the reverse proxy in production.
@@ -150,3 +152,26 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "apps.trips": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
